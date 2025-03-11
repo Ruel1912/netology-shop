@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { API_BASE_URL } from '../../shared/config/apiConfig'
+import { API_BASE_URL } from '../../shared/config'
 
 import './topSales.css'
 import { STATUS_FAILED, STATUS_IDLE, STATUS_LOADING, STATUS_SUCCEEDED } from '../../shared/constants'

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { API_BASE_URL } from '../../shared/config/apiConfig';
+import { API_BASE_URL } from '../../shared/config';
 import { STATUS_FAILED, STATUS_IDLE, STATUS_LOADING, STATUS_SUCCEEDED } from '../../shared/constants';
 
 export const fetchProduct = createAsyncThunk('product/fetchProduct', async (id: number) => {

@@ -1,13 +1,34 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { API_BASE_URL } from '../../shared/config/apiConfig';
+import { API_BASE_URL } from '../../shared/config';
 import { STATUS_FAILED, STATUS_IDLE, STATUS_LOADING, STATUS_SUCCEEDED } from '../../shared/constants';
-import { IProduct } from '../../pages/catalog/ProductList';
 import { ICategory } from './CatalogCategories';
 
 interface IFetchItemsArgs {
   offset: number | null
   category: number | null
   query: string | null
+}
+
+export interface IProduct {
+  id: number;
+  category: number;
+  title: string;
+  images: string[];
+  price: number;
+  sku: string;
+  manufacturer: string;
+  color: string;
+  material: string;
+  reason: string;
+  season: string;
+  heelSize: string;
+  sizes: IProductSize[];
+  count?: number;
+}
+
+interface IProductSize {
+  size: string;
+  available: boolean;
 }
 
 const DEFAULT_COUNT_PRODUCTS = 6

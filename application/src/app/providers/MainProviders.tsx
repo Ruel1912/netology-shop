@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import { Provider } from 'react-redux'
-import { mainStore } from '../stores'
+import { mainStore, persistor } from '../stores'
+import { PersistGate } from 'redux-persist/integration/react'
 
 interface Props {
   children: ReactNode
@@ -9,7 +10,9 @@ interface Props {
 export const MainProviders = ({ children }: Props) => {
   return (
     <Provider store={mainStore}>
-      {children}
+      <PersistGate loading={null} persistor={persistor}>
+        {children}
+      </PersistGate>
     </Provider>
   )
 }

@@ -1,22 +1,27 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../../app/stores'
-import { ICart } from './Cart'
+import { IOrder } from './CartOrder'
 import { STATUS_FAILED, STATUS_LOADING, STATUS_SUCCEEDED } from '../../shared/constants'
-import { IOrder } from '../../pages/cart/CartPage'
-import { API_BASE_URL } from '../../shared/config/apiConfig'
+import { API_BASE_URL } from '../../shared/config'
 
-export const getCart = (): ICart[] => localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart') as string) : []
+export interface ICart {
+  id: number;
+  title: string;
+  size: string;
+  quantity: number;
+  price: number;
+}
 
-export const setCart = (cart: ICart[]) => localStorage.setItem('cart', JSON.stringify(cart))
+const initialState = {
+  items: [] as ICart[],
+  status: 'idle',
+  completeOrder: false,
+  error: '',
+}
 
 export const cartSlice = createSlice({
   name: 'cart',
-  initialState: {
-    items: getCart(),
-    status: 'idle',
-    completeOrder: false,
-    error: '',
-  },
+  initialState,
   reducers: {
     addItem(state, action) {
       const item = state.items.find((item) => item.id === action.payload.id)
@@ -29,13 +34,9 @@ export const cartSlice = createSlice({
           count: 1,
         })
       }
-
-      setCart(state.items)
     },
     removeItem(state, action) {
       state.items = state.items.filter((item) => item.id !== action.payload.id)
-
-      setCart(state.items)
     },
     toogleCompleteOrder(state) {
       state.completeOrder = !state.completeOrder

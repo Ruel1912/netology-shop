@@ -1,15 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../app/hooks'
-import { priceFormatter } from '../../shared/formatter/priceformatter';
+import { priceFormatter } from '../../shared/formatter';
 import { removeItem, selectCardItems, selectCartTotal } from './cartSlice'
 
-export interface ICart {
-  id: number;
-  title: string;
-  size: string;
-  quantity: number;
-  price: number;
-}
 export function Cart() {
   const cartTableHeaders = ['#', 'Название', 'Размер', 'Кол-во', 'Стоимость', 'Итого', 'Действия'];
 

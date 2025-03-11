@@ -4,11 +4,11 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { fetchProduct } from '../../features/product/productSlice'
 import { Preloader } from '../../shared/Preloader'
 import { Error } from '../../shared/Error'
-import { IProduct } from '../catalog/ProductList'
 import { STATUS_FAILED, STATUS_SUCCEEDED } from '../../shared/constants'
 import { addItem } from '../../features/cart/cartSlice'
 import { ICart } from '../../features/cart/Cart'
-import { priceFormatter } from '../../shared/formatter/priceformatter'
+import { priceFormatter } from '../../shared/formatter'
+import { IProduct } from '../../features/catalog/catalogSlice'
 
 export const ProductPage = () => {
 

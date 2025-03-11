@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import './product.css';
 import { IProduct } from '../../pages/catalog/ProductList';
-import { priceFormatter } from '../../shared/formatter/priceformatter';
+import { priceFormatter } from '../../shared/formatter';
 
 interface Props {
   product: IProduct

@@ -1,9 +1,22 @@
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { IOrder } from '../../pages/cart/CartPage'
 import { STATUS_LOADING } from '../../shared/constants'
 import { Error } from '../../shared/Error'
 import { Preloader } from '../../shared/Preloader'
-import { postOrder, selectCardCompleteOrder, selectCardError, selectCardItems, selectCardStatus, setCart, toogleCompleteOrder } from './cartSlice'
+import { postOrder, selectCardCompleteOrder, selectCardError, selectCardItems, selectCardStatus, toogleCompleteOrder } from './cartSlice'
+
+export interface IOrder {
+  owner: {
+    phone: string,
+    address: string,
+  },
+  items: [
+    {
+      id: number,
+      price: number,
+      count: number
+    },
+  ]
+}
 
 const CartOrder = () => {
 
@@ -31,7 +44,6 @@ const CartOrder = () => {
 
     dispatch(postOrder(orderData))
     dispatch(toogleCompleteOrder())
-    setCart([])
   }
 
   if (error) return <Error error={error || 'Ошибка сохранения заказа'} />
